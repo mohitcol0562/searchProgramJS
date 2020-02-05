@@ -7,16 +7,17 @@ criminals.set("Redford Fort", "Red Strong, Red Fort");
 
 function searchProgram(map, query) {
     var str = 'No Match';
-    if (query) {
-        for (let entry of criminals.keys()) {
-            if (criminals.get(entry) && criminals.get(entry).split(',').join('').toLowerCase().indexOf(query.toLowerCase()) >= 0) {
-                str = `name : ${entry}, Alias : ${criminals.get(entry)} `;
+    if (query && map.size && map.size > 0  ) {
+        for (let entry of map.keys()) {
+            if (map.get(entry) && map.get(entry).split(',').join('').toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+                str = `name : ${entry}, Alias : ${map.get(entry)} `;
             }
             if (entry && entry.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
-                return (`name : ${entry}, Alias : ${criminals.get(entry)} `);
+                return (`name : ${entry}, Alias : ${map.get(entry) ? map.get(entry) : 'N/A' } `);
             }
         }
     }
-
     return str;
 }
+
+console.log(searchProgram(criminals ,"paul"));
